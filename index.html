@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+
+<body ng-app="angularApp">
+    <nav class="navbar navbar-default">
+        <div>
+            <ul class="nav navbar-nav">
+                <li><a href="#" class="btn active">A</a></li>
+                <li><a href="/exam.html" class="btn">B</a></li>
+                <li><a href="#" class="btn">C</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div ng-controller="NewCandidateController" class="container">
+        <form name="candidateForm" class="form-inline">
+            <div id="inputs" class="form-group">
+                <label for="candidateName">Name</label>
+                <input class="form-control"
+                       id="candidateName"
+                       type="text" 
+                       id="name"
+                       ng-model="candidate.name" 
+                       placeholder="Enter your name" 
+                       ng-required="true">
+                <br>
+                <label for="candidateEmail">Email</label>
+                <input class="form-control"
+                       id="candidateEmail"
+                       type="email" 
+                       ng-model="candidate.email" 
+                       placeholder="Enter your email" 
+                       ng-required="true">
+            </div>
+            <br>
+            <div id="submits" class="btn-group" role="group">
+                <button class="btn btn-default" 
+                        type="reset" ng-click="reset()">New</button>
+                <button class="btn btn-default" 
+                        type="submit" ng-click="newCandidate()">Save</button>
+            </div>
+            
+        </form>
+    </div>
+    
+    <!--- Scripts: Libraries -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    
+    <!--- Scripts: Mine -->
+    <script src="angScript.js"></script>
+</body>
+
+</html>
