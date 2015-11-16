@@ -1,0 +1,14 @@
+<div class="row" style="width:80%;margin:auto"
+     ng-repeat="q in questions track by $index">
+    <center>
+        <div class="col-sm-3" style="width:50%">
+            <label for="Q">Question {{$index+1}} </label><br>
+            <textarea type="text" id="Q" readonly>{{ q.QuestionText }}</textarea>
+        </div>
+        <div class="col-sm-3" style="width:50%">
+            <label for="A">Answer {{$index+1}}</label><br>
+            <textarea type="text" id="A" kb-snapshot question="q"
+                      ng-focus="focus(q, $event)" ng-blur="unfocus(q, $event)"> </textarea>
+        </div>
+    </center>
+</div>

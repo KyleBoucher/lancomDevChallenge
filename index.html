@@ -6,15 +6,7 @@
 </head>
 
 <body ng-app="angularApp">
-    <nav class="navbar navbar-default">
-        <div>
-            <ul class="nav navbar-nav">
-                <li><a href="#" class="btn active">A</a></li>
-                <li><a href="/exam.html" class="btn">B</a></li>
-                <li><a href="#" class="btn">C</a></li>
-            </ul>
-        </div>
-    </nav>
+    <div kb-nav-bar></div>
     
     <div ng-controller="NewCandidateController" class="container">
         <form name="candidateForm" class="form-inline">
@@ -48,11 +40,14 @@
     </div>
     
     <!--- Scripts: Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
     
     <!--- Scripts: Mine -->
     <script src="angScript.js"></script>
+    <script src="angControllers.js"></script>
+    <script src="angDirectives.js"></script>
 </body>
 
 </html>

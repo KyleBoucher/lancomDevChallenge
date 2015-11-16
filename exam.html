@@ -3,66 +3,57 @@
 
 <head>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="examStyle.css">
 </head>
 
 <body ng-app="angularApp">
-    <nav class="navbar navbar-default">
-        <div>
-            <ul class="nav navbar-nav">
-                <li><a href="/index.html" class="btn">A</a></li>
-                <li><a href="#" class="btn active">B</a></li>
-                <li><a href="#" class="btn">C</a></li>
-            </ul>
-        </div>
-    </nav>
+    <div kb-nav-bar></div>
     
-    <div ng-controller="examController">
-        <form name="filterForm" class="container">
-            <div >
-                <select name="candidateSelect" ng-model="selectedCandidate">
-                    <option ng-value=""></option>
-                    <option ng-repeat="cand in candidates"
-                            ng-value="{{cand.Fullname}}">
-                        {{cand.Fullname}}
-                    </option>
-                </select>
-                <br>
-                <select name="questionairSelect" ng-model="selectedQuestionaire">
-                    <option ng-value=""></option>
-                    <option ng-repeat="q in questionairs"
-                            ng-value="{{q.Name}}">
-                        {{q.Name}}
-                    </option>
-                </select>
+    <div ng-controller="examController" class="container">
+        <form name="filterForm" class="form-horizontal">
+            <div class="form-group">
+                <div class="col-sm-4 col-sm-offset-2">
+                    <select class="form-control"
+                            name="candidateSelect" ng-model="selectedCandidate"
+                            ng-options="cand.Fullname for cand in candidates"
+                            ng-change="selectCandidate()">
+                        <option value="">Candidates...</option>
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <select class="form-control"
+                            name="questionairSelect" ng-model="selectedQuestionair"
+                            ng-options="q.Name for q in questionairs"
+                            ng-change="selectQuestionair()">
+                        <option value="">Questionaires...</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-default col-sm-3 col-sm-offset-3"
+                        ng-click="startExam()">Start Questionaire</button>
+                <button class="btn btn-default col-sm-3"
+                        ng-click="submitExam()">Submit Questionaire</button>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-offset-5">Timer: {{ totalTimer | date:'mm:ss' }}</label>
             </div>
         </form>
         
         <form name="questions">
-            <div>
-                <div class="row" style="width:80%;margin:auto">
-                    <div class="col-sm-4" style="width:50%">
-                        <label for="Q">Question 1</label><br>
-                        <textarea type="text" id="Q" 
-                             style="overflow:auto;resize:none;width:300px;height:100px" 
-                                 readonly></textarea>
-                    </div>
-                    <div class="col-sm-4" style="width:50%">
-                        <label for="A">Answer 1</label><br>
-                        <textarea type="text" id="A" 
-                             style="overflow:auto;resize:none;width:300px;height:100px"
-                                  ></textarea>
-                    </div>
-                </div>
-            </div>
+            <div id="qdiv" kb-qa-row></div>
         </form>
     </div>
     
     <!--- Scripts: Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
     
     <!--- Scripts: Mine -->
     <script src="angScript.js"></script>
+    <script src="angControllers.js"></script>
+    <script src="angDirectives.js"></script>
 </body>
 
 </html>
