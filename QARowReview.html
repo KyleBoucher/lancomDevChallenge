@@ -1,0 +1,26 @@
+<div class="row"
+     ng-repeat="q in currentExam.Questions track by $index">
+    <div class="container">
+        <div class="col-sm-4 zero-pad">
+            <label for="Q">Question {{$index+1}} </label><br>
+            <textarea type="text" id="Q" readonly>{{ q.QuestionText }}</textarea>
+        </div>
+        <div class="col-sm-4 zero-pad">
+            <label for="A">Answer {{$index+1}}</label><br>
+            <textarea type="text" id="A" readonly>{{ q.AnswerText }}</textarea>
+        </div>
+        <div class="col-sm-1" id="qtime">
+            <label>{{ q.StartTime | dateDifferenceFromString:q.EndTime | date:'mm:ss' }}</label>
+        </div>
+        <div class="col-sm-3" id="qmark">
+            <div class="col-sm-6" id="qAddMinusDiv">
+                <button class="btn btn-default" id="addScore" ng-click="addScore($index, 1)">+</button>
+                <br>
+                <button class="btn btn-default" id="addScore" ng-click="addScore($index, -1)">-</button>
+            </div>
+            <div class="col-sm-6" id="qMarkDiv">
+                <label>Mark: {{qScores[$index] || 0}}</label>
+            </div>
+        </div>
+    </div>
+</div>

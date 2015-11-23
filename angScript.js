@@ -2,23 +2,14 @@
 var app = angular.module('angularApp', []);
 
 ///////////// Filters //////////////
-app.filter('secondsToDate', [function() {
-    return function(seconds) {
-        var d = new Date();
-        d.setHours(0,0,0,0);
-        d.setSeconds(seconds);
-        return d;
-    };
-}]);
-
-app.filter('isSame', function() {
+/**
+    Gets the difference between two dates given 
+        the input dates are in a string format.
+*/
+app.filter('dateDifferenceFromString', function() {
     return function(input, param) {
-        return input === param;
+        var t1 = new Date(input);
+        var t2 = new Date(param);
+        return new Date(t2 - t1);
     };
-});
-
-app.filter('getByHash', function() {
-    return function(input, hash) {
-        return $('filter')(input, hash);
-    }
 });

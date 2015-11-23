@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body ng-app="angularApp">
+    <div kb-nav-bar></div>
+    
+    <div ng-controller="reviewController" class="container">
+        
+        <div class="col-sm-12 reviewForm">
+            <form name="filterForm" class="form-horizontal">
+                <div class="col-sm-6">
+                    <div id="reviewExamSelect">
+                        <label for="examSelect">Exam: </label>
+                        <select class="form-control"
+                                name="examSelect" ng-model="selectedExam"
+                                ng-options="e.Key for e in allExams | filter:selectedQuestionair.Hash | filter:selectedCandidate.Email"
+                                ng-change="selectExam()"
+                                ng-disabled="populatingExamList">
+                            <option value="">Exams...</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="reviewInformation">
+                        <label ng-show="currentExam">Time Taken: {{ examTime | date:'mm:ss' }}</label><br>
+                        <label ng-show="currentExam">Date Taken: {{ currentExam.StartTime | date:'d MMMM y' }} </label><br>
+                        <label ng-show="currentExam">Total Score: {{ totalScore }}</label>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-sm-offset-2" id="filterSection">
+                    <center>
+                        <label>Filter</label><br>
+                    </center>
+                    <div class="col-sm-12">
+                        <select class="form-control"
+                                name="candidateSelect" ng-model="selectedCandidate"
+                                ng-options="cand.Fullname for cand in candidates"
+                                ng-change="selectCandidate()">
+                            <option value="">Candidates...</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-12">
+                        <select class="form-control"
+                                name="questionairSelect" ng-model="selectedQuestionair"
+                                ng-options="q.Name for q in questionairs"
+                                ng-change="selectQuestionair()">
+                            <option value="">Questionaires...</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-12">
+            <form name="questions">
+                <div id="qareviewdiv" kb-qa-row-review></div>
+            </form>
+        </div>
+    </div>
+    
+    <!--- Scripts: Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    
+    <!--- Scripts: Mine -->
+    <script src="angScript.js"></script>
+    <script src="angControllers.js"></script>
+    <script src="angDirectives.js"></script>
+</body>
+
+</html>

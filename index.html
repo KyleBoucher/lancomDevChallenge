@@ -33,7 +33,8 @@
                 <button class="btn btn-default" 
                         type="reset" ng-click="reset()">New</button>
                 <button class="btn btn-default" 
-                        type="submit" ng-click="newCandidate()">Save</button>
+                        type="submit" ng-click="newCandidate()"
+                        ng-disabled="!(candidate.name && candidate.email)">Save</button>
             </div>
             
         </form>
